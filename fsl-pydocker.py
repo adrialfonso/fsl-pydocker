@@ -11,16 +11,22 @@ class CustomArgumentParser(argparse.ArgumentParser):
     
 def print_fsl_banner():
     text = [
-        f"{Fore.GREEN} ___  ___  _           ___ __   __ ___    ___    ___  _  __ ___  ___ {Style.RESET_ALL}",
-        f"{Fore.GREEN}| __|/ __|| |         | _ \\ \\ / /|   \\  / _ \\  / __|| |/ /| __|| _ \\{Style.RESET_ALL}",
-        f"{Fore.GREEN}| _| \\__ \\| |__       |  _/ \\   / | |) || (_) || (__ |   < | _| |   /{Style.RESET_ALL}",
-        f"{Fore.GREEN}|_|  |___/|____|      |_|    |_|  |___/  \\___/  \\___||_|\\_\\|___||_|_\\{Style.RESET_ALL}"
+        f"{Fore.BLUE}  _____ ____  _               ______   ______   ___   ____ _  _______ ____  {Style.RESET_ALL}",
+        f"{Fore.BLUE} |  ___/ ___|| |             |  _ \\ \\ / /  _ \\ / _ \\ / ___| |/ /| ____|  _ \\ {Style.RESET_ALL}",
+        f"{Fore.BLUE} | |_  \\___ \\| |      _____  | |_) \\ V /| | | | | | | |   | ' / |  _| | |_) |{Style.RESET_ALL}",
+        f"{Fore.BLUE} |  _|  ___) | |___  |_____| |  __/ | | | |_| | |_| | |___| . \\ | |___|  _ < {Style.RESET_ALL}",
+        f"{Fore.BLUE} |_|   |____/|_____|         |_|    |_| |____/ \\___/ \\____|_|\\_\\|_____|_| \\_\\{Style.RESET_ALL}",
     ]
 
     for line in text:
         print(line)
     
     print("\n")
+
+def print_version_info():
+    print(f"fsl-pydocker 1.0")
+    print(f"Python Version: {sys.version}")
+    print(f"Docker Version: {docker.__version__}")
 
 def run_container(local_fsl_data_path):
     try:
@@ -82,16 +88,29 @@ def parse_args(args):
     )
 
     # Add argument for local volume path
-    parser.add_argument('-v', '--volume-path', type=str, required=True,
+    parser.add_argument('-v', '--volume-path', type=str, nargs='?',
                         help=f'{Fore.YELLOW}Local path to FSL data volume{Style.RESET_ALL}')
+    # New options for version information
+    parser.add_argument('--version', action='store_true', help='Show version information')
 
     try:
-        return parser.parse_args(args)
+        args = parser.parse_args(args)
+
+        if not args.volume_path and not args.version:
+            # If no arguments are provided, show help
+            parser.print_help()
+            sys.exit(1)
+
+        if args.version:
+            print_version_info()
+            sys.exit(0)
 
     except argparse.ArgumentError as e:
         print(f"{Fore.RED}Error: {e}{Style.RESET_ALL}")
         parser.print_help()
         sys.exit(1)
+
+    return args
 
 if __name__ == "__main__":
     # Parse the command-line arguments
