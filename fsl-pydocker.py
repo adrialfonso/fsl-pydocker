@@ -8,6 +8,19 @@ init(autoreset=True)
 class CustomArgumentParser(argparse.ArgumentParser):
     def error(self, message):
         raise argparse.ArgumentError(None, message)
+    
+def print_fsl_banner():
+    text = [
+        f"{Fore.GREEN} ___  ___  _           ___ __   __ ___    ___    ___  _  __ ___  ___ {Style.RESET_ALL}",
+        f"{Fore.GREEN}| __|/ __|| |         | _ \\ \\ / /|   \\  / _ \\  / __|| |/ /| __|| _ \\{Style.RESET_ALL}",
+        f"{Fore.GREEN}| _| \\__ \\| |__       |  _/ \\   / | |) || (_) || (__ |   < | _| |   /{Style.RESET_ALL}",
+        f"{Fore.GREEN}|_|  |___/|____|      |_|    |_|  |___/  \\___/  \\___||_|\\_\\|___||_|_\\{Style.RESET_ALL}"
+    ]
+
+    for line in text:
+        print(line)
+    
+    print("\n")
 
 def run_container(local_fsl_data_path):
     try:
@@ -36,17 +49,19 @@ def run_container(local_fsl_data_path):
 
         # Execute 'ls' command inside the container to list the content of the specified directory
         ls_result = container.exec_run(['ls', container_fsl_data_path])
-        print(f"\n" + "Content of directory {container_fsl_data_path} inside the container:")
+        print("\n" + f"Content of directory {container_fsl_data_path} inside the container:")
         print(ls_result.output.decode('utf-8'))
 
         # Tool description
+        print_fsl_banner()
         print(Fore.GREEN + 'Welcome to FSL! (5.0.9)')
         print("fsl-pydocker is a Python script for running FSL (FMRIB Software Library) in a Docker container.")
         print("It allows you to perform neuroimaging analysis using FSL without the need to install FSL locally.")
 
         # Main loop
+        print("\nEnter a command to run inside the container (type 'exit' to exit) ")
         while True:
-            user_command = input("\nEnter a command to run inside the container (type 'exit' to exit): ")
+            user_command = input("fsl-pydocker@root $ ")
             if user_command.lower() == 'exit':
                 break
             else:
