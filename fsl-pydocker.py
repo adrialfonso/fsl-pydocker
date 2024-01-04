@@ -36,12 +36,22 @@ def run_container(local_fsl_data_path):
 
         # Execute 'ls' command inside the container to list the content of the specified directory
         ls_result = container.exec_run(['ls', container_fsl_data_path])
-        print(f"Content of directory {container_fsl_data_path} in the container:")
+        print(f"\n" + "Content of directory {container_fsl_data_path} inside the container:")
         print(ls_result.output.decode('utf-8'))
 
-        # Display the FSL version in the container
-        fsl_version = container.exec_run(['cat', '/usr/share/fsl/5.0/etc/fslversion'])
-        print('Welcome to FSL!' + ' -> ' + fsl_version.output.decode('utf-8'))
+        # Tool description
+        print(Fore.GREEN + 'Welcome to FSL! (5.0.9)')
+        print("fsl-pydocker is a Python script for running FSL (FMRIB Software Library) in a Docker container.")
+        print("It allows you to perform neuroimaging analysis using FSL without the need to install FSL locally.")
+
+        # Main loop
+        while True:
+            user_command = input("\nEnter a command to run inside the container (type 'exit' to exit): ")
+            if user_command.lower() == 'exit':
+                break
+            else:
+                command_result = container.exec_run(user_command)
+                print(command_result.output.decode('utf-8'))
 
     except Exception as e:
         print(f"{Fore.RED}An error occurred: {str(e)}{Style.RESET_ALL}")
