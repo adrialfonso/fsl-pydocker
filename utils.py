@@ -30,5 +30,5 @@ def print_fsl_banner():
 def print_version_info():
     print(f"fsl-pydocker 1.0")
     print(f"Python Version: {sys.version}")
-    docker_version = subprocess.run(['docker', '--version'], capture_output=True, text=True)
+    docker_version = run_command(['docker', '--version'], capture_output=True, text=True)
     print(f"Docker Version: {docker_version.stdout.strip()}")
