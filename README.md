@@ -55,3 +55,17 @@ Before using FSL-pydocker, ensure that the following prerequisites are met:
 
 - **Python**: Make sure you have installed python 3+. If not, download it from [python.org](https://www.python.org/downloads/)
 - **Docker Engine**: Docker is an open source containerization technology for building and containerizing your applications. To be able to run FSL-pydocker in a Windows OS, you need to make sure that  Docker Engine is running background. Youn can follow this easy tutorial from [Docker Desktop Documentation](https://docs.docker.com/desktop/install/windows-install/). Remember that every time you want to run FSL-pydocker, Docker Engine needs to be running (just open Docker Desktop before using FSL-pydocker).
+
+- In order to check that both installations were succesful, try:
+
+  ```bash
+      python --version && docker ps
+
+- or:
+
+  ```bash
+      python3 --version && docker ps
+
+If no errors displayed, all is OK!
+
+
