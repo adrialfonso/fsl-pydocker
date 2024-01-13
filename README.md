@@ -25,7 +25,7 @@ Before using FSL-pydocker, ensure that the following prerequisites are met:
   ```bash
       git clone https://github.com/adrialfonso/fsl-pydocker.git
 
-- You need to link the specified local FSL volume path (with all your data) to the container's /volume/ directory. You can use the fsl-pydocker/volume/ directory as your default local volume path. In other words, you will need to move all your data (images and other stuff) to fsl-pydocker/volume:
+- You need to link the specified local FSL volume path (with all your data) to the container's /volume/ directory (complete path). You can use the fsl-pydocker/volume/ directory as your default local volume path. In other words, you will need to move all your data (images and other stuff) to fsl-pydocker/volume:
 
   <p align="center">
     <img src=https://github.com/adrialfonso/fsl-pydocker/assets/155368998/04cb4420-cee6-41a2-ad77-0065326304a4" alt="Image" width="700"/>
