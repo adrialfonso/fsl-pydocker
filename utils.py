@@ -2,9 +2,17 @@ from colorama import Fore, Style
 import subprocess
 import sys
 
-def run_command(command, check=True):
+def run_command(command, check=True, capture_output=False, text=False):
     try:
-        subprocess.run(command, check=check)
+        result = subprocess.run(
+            command,
+            check=check,
+            capture_output=capture_output,  # Add capture_output argument
+            text=text  # Add text argument
+        )
+        
+        if capture_output:
+            return result.stdout
     except subprocess.CalledProcessError as e:
         print(f"{Fore.RED}An error occurred: {e}{Style.RESET_ALL}")
 
@@ -31,4 +39,5 @@ def print_version_info():
     print(f"fsl-pydocker 1.0")
     print(f"Python Version: {sys.version}")
     docker_version = run_command(['docker', '--version'], capture_output=True, text=True)
-    print(f"Docker Version: {docker_version.stdout.strip()}")
+    print(f"Docker Version: {docker_version.strip()}")  # Access strip() directly on the result
+

@@ -29,6 +29,11 @@ def parse_args(args):
     try:
         args = parser.parse_args(args)
 
+        # Check if both arguments are present
+        if args.volume_path and args.version:
+            parser.print_help()
+            sys.exit(1)
+
         # Check for missing required arguments
         if not args.volume_path and not args.version:
             parser.print_help()
