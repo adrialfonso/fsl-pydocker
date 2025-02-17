@@ -42,7 +42,7 @@ Before using FSL-pydocker, ensure that the following prerequisites are met:
   ```bash
     python -m fsl-pydocker -v VOLUME_PATH
 
-- VOLUME_PATH corresponds to your local fsl-pydocker/volume path (absolute path). If the previous command doesn't work, try:
+- IMPORTANT! VOLUME_PATH corresponds to your local fsl-pydocker/volume path, it is obligatory to indicate the absolute path (example: "C:\Users\XYZ\Desktop\fsl-pydocker\volume"). If the previous command doesn't work, try:
 
   ```bash
     python3 -m fsl-pydocker -v VOLUME_PATH
