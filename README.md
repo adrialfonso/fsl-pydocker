@@ -5,7 +5,7 @@
   <img src="https://github.com/adrialfonso/fsl-pydocker/assets/90824134/3cc26b81-d605-49ed-b12b-4992f1d2e768" alt="Image" width="800"/>
 </p>
 
-Due to the difficulty to install FSL in Windows OS, we created FSL-pydocker to simplify the execution of FSL (FMRIB Software Library) within a Docker container. This tool facilitates the seamless integration of FSL into your workflow by providing a convenient command-line interface. By using FSL-pydocker you won't have problems to use FSL in Windows OS. This tool utilizes the `brainlife/fsl` Docker image. 
+Due to the difficulty to install FSL in Windows OS, we created FSL-pydocker to simplify the execution of FSL command promt (FMRIB Software Library) within a Docker container. This tool facilitates the seamless integration of FSL into your workflow by providing a convenient command-line interface. By using FSL-pydocker you won't have problems to use FSL in Windows OS. This tool utilizes the `brainlife/fsl` Docker image. 
 
 ## Prerequisites
 
